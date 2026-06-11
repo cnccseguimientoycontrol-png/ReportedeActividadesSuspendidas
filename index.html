@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reporte de Actividades Suspendidas</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .form-container {
+            background-color: #ffffff;
+            max-width: 500px;
+            width: 100%;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-top: 5px solid #2c3e50;
+        }
+        h2 {
+            color: #2c3e50;
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 18px;
+        }
+        label {
+            display: block;
+            margin-bottom: 6px;
+            color: #34495e;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        input[type="text"], input[type="date"], textarea, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 0.95rem;
+            font-family: inherit;
+        }
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+        textarea { resize: vertical; min-height: 80px; }
+        .radio-group {
+            display: block;
+            margin-top: 5px;
+        }
+        .radio-option {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+        .radio-option input { margin-right: 8px; }
+        button {
+            width: 100%;
+            background-color: #2c3e50;
+            color: white;
+            border: none;
+            padding: 12px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.2s;
+            margin-top: 10px;
+        }
+        button:hover { background-color: #1a252f; }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <h2>Reporte de Actividades Suspendidas</h2>
+    
+    <form action="mailto:tu-cncc.seguimientoycontrol@gmail.com" method="GET" enctype="text/plain" onsubmit="prepararCorreo(event)">
+        
+        <div class="form-group">
+            <label for="actividad">Nombre de la actividad:</label>
+            <input type="text" id="actividad" required placeholder="Ej. Curso de Redacción">
+        </div>
+
+        <div class="form-group">
+            <label for="fecha">Fecha planificada de la actividad:</label>
+            <input type="date" id="fecha" required>
+        </div>
+
+        <div class="form-group">
+            <label for="area">Área responsable de la actividad:</label>
+            <select id="area" required>
+                <option value="" disabled selected>Seleccione el área...</option>
+                <option value="Superintendencia Nacional Contra la Corrupción">Superintendencia Nacional Contra la Corrupción</option>
+                <option value="Intendencia Nacional Anticorrupción / ">Intendencia Nacional Anticorrupción / </option>
+                <option value="Dirección de Gestión Humana">Dirección de Gestión Humana</option>
+                <option value="Atención Ciudadana">Atención Ciudadana</option>
+                <option value="Dirección de Formación Académica">Dirección de Formación Académica</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="motivo">Motivo de suspensión de la actividad:</label>
+            <textarea id="motivo" required placeholder="Escriba detalladamente las razones..."></textarea>
+        </div>
+
+        <div class="form-group">
+            <label>¿Estatus actual de la actividad?</label>
+            <div class="radio-group">
+                <label class="radio-option">
+                    <input type="radio" name="estatus" value="Reprogramada" required> Reprogramada
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="estatus" value="Suspendida Definitivamente"> Suspendida Definitivamente
+                </label>
+            </div>
+        </div>
+
+        <button type="submit">Enviar Reporte al Correo</button>
+    </form>
+</div>
+
+<script>
+function prepararCorreo(event) {
+    event.preventDefault(); 
+    
+    var actividad = document.getElementById('actividad').value;
+    var fecha = document.getElementById('fecha').value;
+    var area = document.getElementById('area').value;
+    var motivo = document.getElementById('motivo').value;
+    var estatus = document.querySelector('input[name="estatus"]:checked').value;
+    
+    var form = event.target;
+    var action = form.getAttribute('action');
+    
+    var asunto = encodeURIComponent("REPORTE: Actividad Suspendida - " + area);
+    
+    var cuerpo = "REPORTE DE ACTIVIDAD SUSPENDIDA\n";
+    cuerpo += "===================================\n\n";
+    cuerpo += "• Nombre de la actividad: " + actividad + "\n";
+    cuerpo += "• Fecha planificada: " + fecha + "\n";
+    cuerpo += "• Área responsable: " + area + "\n";
+    cuerpo += "• Motivo de suspensión: " + motivo + "\n";
+    cuerpo += "• Estado de la actividad: " + estatus + "\n\n";
+    cuerpo += "===================================";
+    
+    cuerpo = encodeURIComponent(cuerpo);
+    
+    window.location.href = action + "?subject=" + asunto + "&body=" + cuerpo;
+}
+</script>
+
+</body>
+</html>
