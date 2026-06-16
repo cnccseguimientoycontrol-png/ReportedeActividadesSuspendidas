@@ -89,8 +89,8 @@
     <form action="https://formspree.io/f/xzdqoyqv" method="POST" style="display: flex; flex-direction: column; gap: 15px;">
        
         <div class="form-group">
-            <label for="area">ÁREA RESPONSABLE DE LA ACTIVIDAD:</label>
-            <select id="area" name="area" required>
+            <label for="´ÁREA">ÁREA RESPONSABLE DE LA ACTIVIDAD:</label>
+            <select id="ÁREA" name="ÁREA" required>
                 <option value="" disabled selected>Seleccione el área...</option>
                 <option value="SUPERINTENDENCIA NACIONAL CONTRA LA CORRUPCIÓN">SUPERINTENDENCIA NACIONAL CONTRA LA CORRUPCIÓN</option>
                 <option value="INTENDENCIA NACIONAL ANTICORRUCIÓN">INTENDENCIA NACIONAL ANTICORRUCIÓN</option>
@@ -101,28 +101,28 @@
         </div>
  
         <div class="form-group">
-            <label for="actividad">NOMBRE DE LA ACTIVIDAD:</label>
-            <input type="text" id="actividad" name="actividad" required placeholder="Ej. Curso de Redacción" style="text-transform: uppercase;" oninput="this.value = this.value.toUppercase()">
+            <label for="ACTIVIDAD">NOMBRE DE LA ACTIVIDAD:</label>
+            <input type="text" id="ACTIVIDAD" name="ACTIVIDAD" required placeholder="Ej. Curso de Redacción" style="text-transform: uppercase;" oninput="this.value = this.value.toUppercase()">
         </div>
 
         <div class="form-group">
-            <label for="fecha">FECHA PLANIFICADA LA ACTIVIDAD:</label>
-            <input type="date" id="fecha" name="fecha" required>
+            <label for="FECHA EN LA QUE HABIA SIDO PLANIFICADA">FECHA EN LA QUE HABIA SIDO PLANIFICADA:</label>
+            <input type="date" id="FECHA EN LA QUE HABIA SIDO PLANIFICADA" name="FECHA EN LA QUE HABIA SIDO PLANIFICADA" required>
         </div>
 
         <div class="form-group">
-            <label for="motivo">MOTIVO DE LA SUSPENSIÓN:</label>
-            <textarea id="motivo" name="motivo" required placeholder="Escriba detalladamente las razones..." style="text-transform: uppercase;" oninput="this.value = this.value.toUppercase()"></textarea>
+            <label for="MOTIVO DE LA SUSPENSIÓN">MOTIVO DE LA SUSPENSIÓN:</label>
+            <textarea id="MOTIVO DE LA SUSPENSIÓN" name="MOTIVO DE LA SUSPENSIÓN" required placeholder="ESCRIBA CON DETALLO LAS RAZONES DE LA SUSPENSIÓN..." style="text-transform: uppercase;" oninput="this.value = this.value.toUppercase()"></textarea>
         </div>
 
         <div class="form-group">
             <label>¿ESTATUS ACTUAL DE LA ACTIVIDAD?</label>
             <div class="radio-group">
                 <label class="radio-option">
-                    <input type="radio" name="estatus" value="REPROGRAMADA" required> REPROGRAMADA
+                    <input type="radio" name="ESTATUS" value="REPROGRAMADA" required> REPROGRAMADA
                 </label>
                 <label class="radio-option">
-                    <input type="radio" name="estatus" value="SUSPENDIDA DEFINITIVAMENTE"> SUSPENDIDA DEFENITIVAMENTE
+                    <input type="radio" name="ESTATUS" value="SUSPENDIDA DEFINITIVAMENTE"> SUSPENDIDA DEFENITIVAMENTE
                 </label>
             </div>
         </div>
