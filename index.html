@@ -86,9 +86,14 @@
 <div style="width: 100%; text-align:center;margin-bottom:20px;">
     <img src="CNCC B.jpg" alt="Banner Institucional" style="width: 100%; max-width: 100%; height: auto; border-radius; 8px; display: block; margin: 0 auto;">
 </div>
-    <form action="https://formspree.io/f/xzdqoyqv" method="POST" style="display: flex; flex-direction: column; gap: 15px;">
-        
-       <input type="hidden" name="_next" value="https://cnccseguimientoycontrol-png.github.io/ReportedeActividadesSuspendidas/GRACIAS.html">
+
+    <div id="mensajeExito" style="display: none; background: white; padding: 40px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center; max-width: 500px; margin: 20px auto;">
+    <h1 style="color: #1a252f; font-size: 24px; margin-bottom: 10px;">¡REPORTE REGISTRADO CON ÉXITO!</h1>
+    <p style="color: #555; font-size: 16px; line-height: 1.6; margin-bottom: 25px;">La información ha sido enviada correctamente al sistema de seguimiento y control de la institución.</p>
+    <button onclick="window.location.reload();" style="padding: 12px 25px; background-color: #1a252f; color: white; border: none; border-radius: 5px; font-weight: bold; cursor: pointer;">ENVIAR OTRO REPORTE</button>
+</div>
+    
+    <form id=miFormulario style="display: flex; flex-direction: column; gap: 15px;">
 
         <div class="form-group">
             <label for="area">ÁREA RESPONSABLE DE LA ACTIVIDAD:</label>
@@ -129,7 +134,7 @@
             </div>
         </div>
 
-        <button type="submit">ENVIAR REPORTE POR CORREO ELECTRONICO</button>
+        <button type="submit">ENVIAR REPORTE POR CORREO ELECTRÓNICO</button>
     </form>
 </div>
 
@@ -161,6 +166,70 @@ function prepararCorreo(event) {
     
     window.location.href = action + "?subject=" + asunto + "&body=" + cuerpo;
 }
+</script>
+
+    <script>
+    document.getElementById("miFormulario").addEventListener("submit", function(e) {
+        e.preventDefault(); // Evita que la página viaje a la pantalla gris de Formspree
+        
+        var form = this;
+        var data = new FormData(form);
+        var button = form.querySelector('button[type="submit"]');
+        
+        button.disabled = true;
+        button.innerText = "ENVIANDO REPORTE...";
+
+        fetch("https://formspree.io/f/xzdqoyqv", {
+            method: "POST",
+            body: data,
+            headers: { 'Accept': 'application/json' }
+        }).then(response => {
+            if (response.ok) {
+                form.style.display = "none"; // Esconde el formulario
+                document.getElementById("mensajeExito").style.display = "block"; // Muestra el cartel de éxito
+            } else {
+                alert("Hubo un error al enviar el reporte. Por favor, intente de nuevo.");
+                button.disabled = false;
+                button.innerText = "ENVIAR REPORTE POR CORREO ELECTRONICO";
+            }
+        }).catch(error => {
+            alert("Error de conexión. Intente nuevamente.");
+            button.disabled = false;
+            button.innerText = "ENVIAR REPORTE POR CORREO ELECTRONICO";
+        });
+    });
+</script>
+
+    <script>
+    document.getElementById("miFormulario").addEventListener("submit", function(e) {
+        e.preventDefault(); // Evita que la página viaje a la pantalla gris de Formspree
+        
+        var form = this;
+        var data = new FormData(form);
+        var button = form.querySelector('button[type="submit"]');
+        
+        button.disabled = true;
+        button.innerText = "ENVIANDO REPORTE...";
+
+        fetch("https://formspree.io/f/xzdqoyqv", {
+            method: "POST",
+            body: data,
+            headers: { 'Accept': 'application/json' }
+        }).then(response => {
+            if (response.ok) {
+                form.style.display = "none"; // Esconde el formulario
+                document.getElementById("mensajeExito").style.display = "block"; // Muestra el cartel de éxito
+            } else {
+                alert("Hubo un error al enviar el reporte. Por favor, intente de nuevo.");
+                button.disabled = false;
+                button.innerText = "ENVIAR REPORTE POR CORREO ELECTRÓNICO";
+            }
+        }).catch(error => {
+            alert("Error de conexión. Intente nuevamente.");
+            button.disabled = false;
+            button.innerText = "ENVIAR REPORTE POR CORREO ELECTRÓNICO";
+        });
+    });
 </script>
 
 </body>
